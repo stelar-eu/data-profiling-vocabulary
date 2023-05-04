@@ -1,0 +1,1047 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY dct "http://purl.org/dc/terms/" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY dcat "http://www.w3.org/ns/dcat#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY vcard "http://www.w3.org/2006/vcard/ns#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY voaf "http://purl.org/vocommons/voaf#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+	<!ENTITY cc "http://creativecommons.org/ns#" >
+	<!ENTITY vann "http://purl.org/vocab/vann/" >
+    <!ENTITY documentation "https://stelar-project.eu/">
+    <!ENTITY documentationTitle "DCAT Application Profile for Data Assets in the STELAR Catalog">
+    <!ENTITY methodology "https://stelar-project.eu/">
+    <!ENTITY methodologyTitle "Methodology for Developing the STELAR Catalog">
+]>
+<!-- About the application profile -->
+<rdf:RDF xmlns="http://stelar-project.eu/klms#"
+     xml:base="http://stelar-project.eu/klms"
+	 xmlns:klms="http://stelar-project.eu/klms"
+	 xmlns:dcat="http://www.w3.org/ns/dcat#"
+	 xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dct="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:vcard="http://www.w3.org/2006/vcard/ns#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+	 xmlns:prov="http://www.w3.org/ns/prov#"
+	 xmlns:schema="http://schema.org/"
+	 xmlns:vann="http://purl.org/vocab/vann/"
+	 xmlns:cc="http://creativecommons.org/ns#"
+	 xmlns:time="http://www.w3.org/2006/time#"
+	 xmlns:locn="http://www.w3.org/ns/locn#"
+	 xmlns:geo="http://www.opengis.net/ont/geosparql#"
+	 xmlns:odrl="http://www.w3.org/ns/odrl/2/"
+	 xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://stelar-project.eu/klms">
+        <owl:imports rdf:resource="http://www.w3.org/ns/dcat"/>
+		<owl:imports rdf:resource="http://www.opengis.net/ont/geosparql"/>
+        <rdfs:comment>Data Profiling Vocabulary (DPV) model.</rdfs:comment>
+		<dct:modified rdf:datatype="xsd:date">2023-05-03</dct:modified>
+        <dct:abstract xml:lang="en">This model is based on the Data Catalogue vocabulary (DCAT) and is used for describing data profiling results.</dct:abstract>
+        <cc:attributionName xml:lang="en">STELAR project</cc:attributionName>
+        <owl:versionInfo xml:lang="en">0.0.5</owl:versionInfo>
+		<dct:license>
+          <rdf:Description rdf:about="https://www.apache.org/licenses/LICENSE-2.0">
+            <dct:title>Apache License 2.0</dct:title>
+            <cc:attributionName>STELAR project</cc:attributionName>
+            <cc:attributionURL rdf:resource="https://stelar-project.eu/"/>
+          </rdf:Description>
+        </dct:license>
+    </owl:Ontology>
+    
+<!-- CHECK RDF DCAT to CKAN dataset mapping: https://extensions.ckan.org/extension/dcat/ -->
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <!-- http://stelar-project.eu/klms#AccessRightsEnum -->
+    <rdfs:Datatype rdf:about="http://stelar-project.eu/klms#AccessRightsEnum">
+        <rdfs:comment xml:lang="en">Enumeration of access rights for a Dataset.</rdfs:comment>
+        <owl:equivalentClass>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>public</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>restricted</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>private</rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </owl:equivalentClass>
+    </rdfs:Datatype>
+	
+
+
+<!-- ####################################### -->
+<!-- ##===================================## -->
+<!-- ##==          PROPERTIES           ==## -->
+<!-- ##===================================## --> 
+<!-- ####################################### -->
+
+
+<!-- ============================================= -->
+<!-- ==    DISTRIBUTION (KLMS) - Properties     == -->
+<!-- ============================================= -->  
+ 
+<!--  Distribution - profile URL   -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#profileURL"> 
+        <rdfs:label xml:lang="en">Distribution - Profile URL</rdfs:label>
+        <dct:identifier>klms:profileURL</dct:identifier>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Distribution"/>
+        <rdfs:range rdf:resource="www.w3.org/2000/01/rdf-schema#Resource"/>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used to store a link to a file or web application that contains all the profiling results.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property can be used to store a link to a file or web application that contains all the profiling results.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+
+<!-- ====================================== -->
+<!-- ==    RASTER - Properties     == -->
+<!-- ====================================== -->  
+
+<!-- http://stelar-project.eu/klms#height -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#height">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Raster"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:height</dct:identifier>
+        <rdfs:label xml:lang="en">Raster - Raster Image Height</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the height of a raster image in pixels.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The height of a raster image in pixels.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+<!-- http://stelar-project.eu/klms#width -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#width">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Raster"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:width</dct:identifier>
+        <rdfs:label xml:lang="en">Raster - Raster Image Width</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the width of a raster image in pixels.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The width of a raster image in pixels.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#crs -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#crs">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dct:identifier>klms:crs</dct:identifier>
+        <rdfs:label xml:lang="en">Geospatial - CRS</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the CRS of a geospatial dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The CRS of a geospatial dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#noDataValue -->
+     <owl:DatatypeProperty rdf:about="http://www.w3.org/ns/dcat#noDataValue">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Raster"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dct:identifier>klms:noDataValue</dct:identifier>
+        <rdfs:label xml:lang="en">Raster - No data value</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the no-data value for a raster image.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The no-data value for a raster image.</rdfs:comment>
+     </owl:DatatypeProperty>
+
+
+
+<!-- ====================================== -->
+<!-- ==    TABULAR - Properties     == -->
+<!-- ====================================== -->  
+
+<!-- http://stelar-project.eu/klms#numColumns -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numColumns">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Tabular"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numColumns</dct:identifier>
+        <rdfs:label xml:lang="en">Tabular - Number of Columns</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of columns of a tabular dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of columns of a tabular dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+<!-- http://stelar-project.eu/klms#numRows -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numRows">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Tabular"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numRows</dct:identifier>
+        <rdfs:label xml:lang="en">Tabular - Number of Rows</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of rows of a tabular dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of rows of a tabular dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+
+
+<!-- ====================================== -->
+<!-- ==    HIERARCHICAL - Properties     == -->
+<!-- ====================================== --> 
+
+<!-- http://stelar-project.eu/klms#numRecords -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numRecords">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Hierarchical"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numRecords</dct:identifier>
+        <rdfs:label xml:lang="en">Hierarchical - Number of records</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of records of a hierarchical dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of records of a hierarchical dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+<!-- http://stelar-project.eu/klms#numAttributes -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numAttributes">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Hierarchical"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numAttributes</dct:identifier>
+        <rdfs:label xml:lang="en">Tabular - Number of attributes</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of attributes of a hierarchical dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of attributes of a hierarchical dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+
+<!-- ====================================== -->
+<!-- ==    RDFGraph - Properties     == -->
+<!-- ====================================== --> 
+
+<!-- http://stelar-project.eu/klms#numNamespaces -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numNamespaces">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#RDFGraph"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numNamespaces</dct:identifier>
+        <rdfs:label xml:lang="en">RDFGraph - Number of namespaces</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of namespaces of an RDF graph dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of namespaces of an RDF graph dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+<!-- http://stelar-project.eu/klms#numClasses -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numClasses">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#RDFGraph"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numClasses</dct:identifier>
+        <rdfs:label xml:lang="en">RDFGraph - Number of classes</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of classes of an RDF graph dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of classes of an RDF graph dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#numObjectProperties -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numObjectProperties">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#RDFGraph"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numObjectProperties</dct:identifier>
+        <rdfs:label xml:lang="en">RDFGraph - Number of object properties</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of object properties of an RDF graph dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of object properties of an RDF graph dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#numDatatypeProperties -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numDatatypeProperties">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#RDFGraph"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numDatatypeProperties</dct:identifier>
+        <rdfs:label xml:lang="en">RDFGraph - Number of datatype properties</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of datatype properties of an RDF graph dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of datatype properties of an RDF graph dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+
+<!-- ================================================ -->
+<!-- ==    TEXT/TEXTUAL_ATTRIBUTE - Properties     == -->
+<!-- ================================================ -->
+
+<!-- http://stelar-project.eu/klms#language -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#language">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:language</dct:identifier>
+        <rdfs:label xml:lang="en">Text - Main language</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the language of a textual dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The language of a textual dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#numSentences -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numSentences">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numSentences</dct:identifier>
+        <rdfs:label xml:lang="en">Text - Number of Sentences</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of sentences in a textual dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of sentences in a textual dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#numWords -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numWords">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numWords</dct:identifier>
+        <rdfs:label xml:lang="en">Text - Number of words</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of words in a textual dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of words in a textual dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#numDistinctWords -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numDistinctWords">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numDistinctWords</dct:identifier>
+        <rdfs:label xml:lang="en">Text - Number of distinct words</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of distinct words in a textual dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of distinct words in a textual dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#numCharacters -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numCharacters">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numCharacters</dct:identifier>
+        <rdfs:label xml:lang="en">Text - Number of characters</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of characters in a textual dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of characters in a textual dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#ratioUppercase -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#ratioUppercase">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#TextualAttribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:ratioUppercase</dct:identifier>
+        <rdfs:label xml:lang="en">Text - Ratio uppercase</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the ratio of uppercase letters in a textual dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The ratio of uppercase letters in a textual dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#ratioDigits -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#ratioDigits">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#TextualAttribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:ratioDigits</dct:identifier>
+        <rdfs:label xml:lang="en">Text - Ratio digits</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the ratio of digits in a textual dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The ratio of digits in a textual dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#ratioSpecialChars -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#ratioSpecialChars">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#TextualAttribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:ratioSpecialChars</dct:identifier>
+        <rdfs:label xml:lang="en">Text - Ratio special characters</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the ratio of special characters in a textual dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The ratio of special characters in a textual dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+
+<!-- ====================================== -->
+<!-- ==    ATTRIBUTE - Properties        == -->
+<!-- ====================================== -->
+
+<!-- http://stelar-project.eu/klms#type -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#type">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dct:identifier>klms:type</dct:identifier>
+        <rdfs:label xml:lang="en">Attribute - Type</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the type of an attribute.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The type of an attribute.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#missingRatio -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#missingRatio">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:missingRatio</dct:identifier>
+        <rdfs:label xml:lang="en">Attribute - Missing values ratio</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the missing values ratio of an attribute.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The missing values ratio of an attribute.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#uniqueness -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#uniqueness">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:uniqueness</dct:identifier>
+        <rdfs:label xml:lang="en">Attribute - Uniqueness</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the number of distinct values divided by the number of total values of an attribute.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The number of distinct values divided by the number of total values of an attribute.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#nestingLevel -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#nestingLevel">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:nestingLevel</dct:identifier>
+        <rdfs:label xml:lang="en">Attribute - Nesting Level</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property describes the nesting of the attribute (in case of nested attributes or property hierarchies).</vann:usageNote>
+        <rdfs:comment xml:lang="en">The nesting of the attribute.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+
+<!-- ================================================= -->
+<!-- ==    CORRELATION/JOINABILITY - Properties     == -->
+<!-- ================================================= -->
+
+<!-- http://stelar-project.eu/klms#degree -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#degree">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:degree</dct:identifier>
+        <rdfs:label xml:lang="en">Correlation/Joinability - Degree</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the degree of a Correlation/Joinability class instance.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The degree of a Correlation/Joinability class instance.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+
+<!-- ================================================= -->
+<!-- ==    SERIES_ATTRIBUTE - Properties            == -->
+<!-- ================================================= -->
+
+<!-- http://stelar-project.eu/klms#absEnergy -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#absEnergy">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#SeriesAttribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:absEnergy</dct:identifier>
+        <rdfs:label xml:lang="en">SeriesAttribute - Absolute energy</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the absolute energy of a series dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The absolute energy of a series dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#absSumChanges -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#absSumChanges">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#SeriesAttribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:absSumChanges</dct:identifier>
+        <rdfs:label xml:lang="en">SeriesAttribute - Absolute sum of changes</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the absolute value of consecutive changes of a series dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The absolute value of consecutive changes of a series dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#lenAboveMean -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#lenAboveMean">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#SeriesAttribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:lenAboveMean</dct:identifier>
+        <rdfs:label xml:lang="en">SeriesAttribute - Maximum subsequence length above mean</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the length of the longest subsequence above the mean value of a series dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The longest subsequence above the mean value.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#lenBelowMean -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#lenBelowMean">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#SeriesAttribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:lenBelowMean</dct:identifier>
+        <rdfs:label xml:lang="en">SeriesAttribute - Maximum subsequence length below mean</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the length of the longest subsequence below the mean value of a series dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The longest subsequence below the mean value.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#numPeaks -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#numPeaks">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#SeriesAttribute"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:numPeaks</dct:identifier>
+        <rdfs:label xml:lang="en">SeriesAttribute - Number of peaks</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the total number of peaks of a series dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The total number of peaks of a series dataset.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+
+<!-- ================================================= -->
+<!-- ==    NUMERICAL_DISTRIBUTION - Properties      == -->
+<!-- ================================================= -->
+
+<!-- http://stelar-project.eu/klms#min -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#min">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:min</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Minimum value</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe a minimum value.</vann:usageNote>
+        <rdfs:comment xml:lang="en">A minimum value.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#max -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#max">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:max</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Maximum value</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe a maximum value.</vann:usageNote>
+        <rdfs:comment xml:lang="en">A maximum value.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#count -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#count">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <dct:identifier>klms:count</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution/Category - Count</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe a count.</vann:usageNote>
+        <rdfs:comment xml:lang="en">A count.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#average -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#average">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:average</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Average value</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe an average value.</vann:usageNote>
+        <rdfs:comment xml:lang="en">An average value.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#stddev -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#stddev">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:stddev</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Standard deviation</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe a standard deviation value.</vann:usageNote>
+        <rdfs:comment xml:lang="en">A standard deviation value.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#median -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#median">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:median</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Median</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe a median value.</vann:usageNote>
+        <rdfs:comment xml:lang="en">A median value.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#kurtosis -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#kurtosis">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:kurtosis</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Kurtosis</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the kurtosis of a collection of numbers.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The kurtosis of a collection of numbers.</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+<!-- http://stelar-project.eu/klms#skewness -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#skewness">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:skewness</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Skewness</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the skewness of a collection of numbers.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The skewness of a collection of numbers.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#variance -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#variance">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:variance</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Variance</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the variance of a collection of numbers.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The variance of a collection of numbers.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#percentile10 -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#percentile10">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:percentile10</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Percentile 10</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the 10th percentile of a collection of numbers.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The 10th percentile of a collection of numbers.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#percentile25 -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#percentile25">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:percentile25</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Percentile 25</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the 25th percentile of a collection of numbers.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The 25th percentile of a collection of numbers.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#percentile75 -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#percentile75">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:percentile75</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Percentile 75</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the 75th percentile of a collection of numbers.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The 75th percentile of a collection of numbers.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+<!-- http://stelar-project.eu/klms#percentile90 -->
+    <owl:DatatypeProperty rdf:about="http://stelar-project.eu/klms#percentile90">
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dct:identifier>klms:percentile90</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution - Percentile 90</rdfs:label>
+        <vann:usageNote xml:lang="en">Optional property. This property can be used describe the 90th percentile of a collection of numbers.</vann:usageNote>
+        <rdfs:comment xml:lang="en">The 90th percentile of a collection of numbers.</rdfs:comment>
+    </owl:DatatypeProperty>
+
+
+
+
+<!-- ####################################### -->
+<!-- ##===================================## -->
+<!-- ##==          CLASSES              ==## -->
+<!-- ##===================================## --> 
+<!-- ####################################### -->
+    
+<!-- ================================ -->
+<!-- ==       RECOMMENDED CLASSES    == -->
+<!-- ================================ -->
+
+<!-- dcat:Distribution -->
+    <owl:Class rdf:about="http://www.w3.org/ns/dcat#Distribution">
+    	<vann:usageNote xml:lang="en">Recommended class. A physical embodiment of the Dataset in a particular format.</vann:usageNote>
+    	<dct:identifier>dcat:Distribution</dct:identifier>
+    	<rdfs:label xml:lang="en">Distribution</rdfs:label>
+    	<rdfs:isDefinedBy rdf:resource="https://www.w3.org/TR/vocab-dcat-2/#Class:Distribution"/>
+        <rdfs:comment xml:lang="en">Represents a specific available form of a dataset. Each dataset might be available in different forms, these forms might represent different formats of the dataset, different endpoints,... Examples of Distribution include a downloadable CSV file, an XLS file representing the dataset, an RSS feed…</rdfs:comment>
+    </owl:Class>
+
+
+
+<!-- ================================ -->
+<!-- ==     OPTIONAL CLASSES    == -->
+<!-- ================================ -->
+
+<!-- klms:Distribution   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#Distribution">
+        <vann:usageNote xml:lang="en">Optional class. A DataProfile associated to a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:Distribution</dct:identifier>
+        <rdfs:label xml:lang="en">Distribution</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a Distribution of a Dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a Distribution of a Dataset.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
+    </owl:Class>
+
+ <!-- klms:Raster   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#Raster">
+    	<vann:usageNote xml:lang="en">Optional class. A DataProfile associated to a Dataset published or curated by a single agent.</vann:usageNote>
+    	<dct:identifier>klms:Raster</dct:identifier>
+    	<rdfs:label xml:lang="en">Raster</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a Distribution of Raster Dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a Distribution of a Raster Dataset.</vann:usageNote>
+		<rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Distribution"/>
+    </owl:Class>
+	
+ <!-- klms:Tabular   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#Tabular">
+    	<vann:usageNote xml:lang="en">Optional class. A geospatial-aware profile associated to a Dataset published or curated by a single agent.</vann:usageNote>
+    	<dct:identifier>klms:Tabular</dct:identifier>
+    	<rdfs:label xml:lang="en">Tabular</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a Distribution of a Tabular Dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a Distribution of a Tabular Dataset.</vann:usageNote>
+		<rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Distribution"/>
+    </owl:Class>
+	
+ <!-- klms:Hierarchical   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#Hierarchical">
+    	<vann:usageNote xml:lang="en">Optional class. A textual-aware profile associated to a Dataset published or curated by a single agent.</vann:usageNote>
+    	<dct:identifier>klms:Hierarchical</dct:identifier>
+    	<rdfs:label xml:lang="en">Hierarchical</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a Distribution of a Hierarchical Dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a Distribution of a Hierarchical Dataset.</vann:usageNote>
+		<rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Distribution"/>
+    </owl:Class>
+
+<!-- klms:RDFGraph   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#RDFGraph">
+        <vann:usageNote xml:lang="en">Optional class. Combined profile associated to the various texts of a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:RDFGraph</dct:identifier>
+        <rdfs:label xml:lang="en">RDFGraph</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a Distribution of a RDFGraph Dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a Distribution of a RDFGraph Dataset.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Distribution"/>
+    </owl:Class>
+
+<!-- klms:Text   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#Text">
+        <vann:usageNote xml:lang="en">Optional class. Profiles associated to the various texts of a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:Text</dct:identifier>
+        <rdfs:label xml:lang="en">Text</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a Distribution of a Text Dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a Distribution of a Text Dataset.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Distribution"/>
+    </owl:Class>
+
+<!-- klms:Attribute   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#Attribute">
+        <vann:usageNote xml:lang="en">Optional class. Profiles associated to the languages of various texts of a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:Attribute</dct:identifier>
+        <rdfs:label xml:lang="en">Attribute</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from an Attribute of a dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from an Attribute of a dataset.</vann:usageNote>
+        <rdfs:hasParent rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+    </owl:Class>
+
+<!-- klms:NumericalDistribution   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#NumericalDistribution">
+        <vann:usageNote xml:lang="en">Optional class. Profiles associated to the distinct terms of various texts of a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:NumericalDistribution</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalDistribution</rdfs:label>
+        <rdfs:comment xml:lang="en">A class used to describe numerical distribution information.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. A class used to describe numerical distribution information.</vann:usageNote>
+    </owl:Class>
+
+ <!-- klms:CategoricalDistribution   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#CategoricalDistribution">
+    	<vann:usageNote xml:lang="en">Optional class. Profiles of a time series Dataset published or curated by a single agent.</vann:usageNote>
+    	<dct:identifier>klms:CategoricalDistribution</dct:identifier>
+    	<rdfs:label xml:lang="en">CategoricalDistribution</rdfs:label>
+        <rdfs:comment xml:lang="en">A class used to describe categorical distribution information.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. A class used to describe categorical distribution information.</vann:usageNote>
+    </owl:Class>
+
+<!-- klms:Dependency   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#Dependency">
+        <vann:usageNote xml:lang="en">Optional class. Profiles of a set of univariate time series from a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:Dependency</dct:identifier>
+        <rdfs:label xml:lang="en">Dependency</rdfs:label>
+        <rdfs:comment xml:lang="en">A class used to describe dependencies among attributes.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. A class used to describe dependencies among attributes.</vann:usageNote>
+    </owl:Class>
+
+<!-- klms:Correlation   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#Correlation">
+        <vann:usageNote xml:lang="en">Optional class. Profiles of a multivariate time series from a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:Correlation</dct:identifier>
+        <rdfs:label xml:lang="en">Correlation</rdfs:label>
+        <rdfs:comment xml:lang="en">A class used to describe correlations among attributes.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. A class used to describe correlations among attributes.</vann:usageNote>
+    </owl:Class>
+
+<!-- klms:Joinability   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#Joinability">
+        <vann:usageNote xml:lang="en">Optional class. Profiles of a set of multivariate time series from a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:Joinability</dct:identifier>
+        <rdfs:label xml:lang="en">Joinability</rdfs:label>
+        <rdfs:comment xml:lang="en">A class used to describe the joinability among attributes.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. A class used to describe the joinability among attributes.</vann:usageNote>
+    </owl:Class>
+	
+ <!-- klms:UniqueCombination   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#UniqueCombination">
+    	<vann:usageNote xml:lang="en">Optional class. A geospatial-aware profile associated to a vector Dataset published or curated by a single agent.</vann:usageNote>
+    	<dct:identifier>klms:UniqueCombination</dct:identifier>
+    	<rdfs:label xml:lang="en">UniqueCombination</rdfs:label>
+        <rdfs:comment xml:lang="en">A class used to indicate sets of attributes that can be used as composite keys.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. A class used to indicate sets of attributes that can be used as composite keys.</vann:usageNote>
+    </owl:Class>
+
+ <!-- klms:FunctionalDependency   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#FunctionalDependency">
+    	<vann:usageNote xml:lang="en">Optional class. A geospatial-aware profile associated to a raster Dataset published or curated by a single agent.</vann:usageNote>
+    	<dct:identifier>klms:FunctionalDependency</dct:identifier>
+    	<rdfs:label xml:lang="en">FunctionalDependency</rdfs:label>
+        <rdfs:comment xml:lang="en">A class used to describe functional dependencies among attributes.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. A class used to describe functional dependencies among attributes.</vann:usageNote>
+		<rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Dependency"/>
+    </owl:Class>
+
+<!-- klms:InclusionDependency   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#InclusionDependency">
+        <vann:usageNote xml:lang="en">Optional class. Geospatial-aware profiles associated to the various bands of a set of raster images that consist a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:InclusionDependency</dct:identifier>
+        <rdfs:label xml:lang="en">InclusionDependency</rdfs:label>
+        <rdfs:comment xml:lang="en">A class used to describe inclusion dependencies among attributes.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. A class used to describe inclusion dependencies among attributes.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Dependency"/>
+    </owl:Class>
+
+<!-- klms:NumericalAttribute   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#NumericalAttribute">
+        <vann:usageNote xml:lang="en">Optional class. Geospatial-aware profiles associated to the various raster images that consist a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:NumericalAttribute</dct:identifier>
+        <rdfs:label xml:lang="en">NumericalAttribute</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a numerical attribute of a dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a numerical attribute of a dataset.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+    </owl:Class>
+
+<!-- klms:TextualAttribute   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#TextualAttribute">
+        <vann:usageNote xml:lang="en">Optional class. Geospatial-aware profiles associated to the band of a raster image from a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:TextualAttribute</dct:identifier>
+        <rdfs:label xml:lang="en">TextualAttribute</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a textual attribute of a dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a textual attribute of a dataset.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+    </owl:Class>
+
+<!-- klms:TemporalAttribute   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#TemporalAttribute">
+        <vann:usageNote xml:lang="en">Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:TemporalAttribute</dct:identifier>
+        <rdfs:label xml:lang="en">TemporalAttribute</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a temporal attribute of a dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a temporal attribute of a dataset.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+    </owl:Class>    
+
+<!-- klms:SpatialAttribute   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#SpatialAttribute">
+        <vann:usageNote xml:lang="en">Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:SpatialAttribute</dct:identifier>
+        <rdfs:label xml:lang="en">SpatialAttribute</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a spatial attribute of a dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a spatial attribute of a dataset.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+    </owl:Class>
+
+<!-- klms:CategoricalAttribute   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#CategoricalAttribute">
+        <vann:usageNote xml:lang="en">Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:CategoricalAttribute</dct:identifier>
+        <rdfs:label xml:lang="en">CategoricalAttribute</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a categorical attribute of a dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a categorical attribute of a dataset.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+    </owl:Class>
+
+<!-- klms:SeriesAttribute   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#SeriesAttribute">
+        <vann:usageNote xml:lang="en">Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:SeriesAttribute</dct:identifier>
+        <rdfs:label xml:lang="en">SeriesAttribute</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a series attribute of a dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a series attribute of a dataset.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#NumericalAttribute"/>
+    </owl:Class>
+
+<!-- klms:BandAttribute   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#BandAttribute">
+        <vann:usageNote xml:lang="en">Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:BandAttribute</dct:identifier>
+        <rdfs:label xml:lang="en">BandAttribute</rdfs:label>
+        <rdfs:comment xml:lang="en">The profiling information extracted from a band attribute of a dataset.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a band attribute of a dataset.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#NumericalAttribute"/>
+    </owl:Class>
+
+<!-- klms:Category   -->
+    <owl:Class rdf:about="http://stelar-project.eu/klms#Category">
+        <vann:usageNote xml:lang="en">Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent.</vann:usageNote>
+        <dct:identifier>klms:Category</dct:identifier>
+        <rdfs:label xml:lang="en">Category</rdfs:label>
+        <rdfs:comment xml:lang="en">A class representing a category of a categorical distribution.</rdfs:comment>
+        <vann:usageNote xml:lang="en">Optional class. A class representing a category of a categorical distribution.</vann:usageNote>
+        <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#CategoricalDistribution"/>
+    </owl:Class>
+
+
+          
+<!-- ################################################# -->
+<!-- ##=============================================## -->
+<!-- ##==          OBJECT PROPERTIES              ==## -->
+<!-- ##=============================================## --> 
+<!-- ################################################# -->
+
+<!--  Attribute - contains  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#contains">
+		<rdfs:label xml:lang="en">Contains</rdfs:label>
+        <dct:identifier>klms:contains</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate a contains relation among classes.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate a contains relation among classes.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  NumericalDistribution - depth distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#depthDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Depth distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Hierarchical"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <dct:identifier>klms:depthDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the depth distribution of a hierarchical dataset.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the depth distribution of a hierarchical dataset.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+<!--  NumericalDistribution - degree distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#degreeDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Degree distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#RDFGraph"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <dct:identifier>klms:degreeDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the degree distribution of an RDF graph.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the degree distribution of an RDF graph.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  NumericalDistribution - class distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#classDistribution">
+        <rdfs:label xml:lang="en">CategoricalDistribution - Class distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#RDFGraph"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#CategoricalDistribution"/>
+        <dct:identifier>klms:classDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the class distribution of an RDF graph.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the class distribution of an RDF graph.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+<!--  NumericalDistribution - sentence length distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#sentenceLengthDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Sentence length distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <dct:identifier>klms:sentenceLengthDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the sentence length distribution of a text.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the sentence length distribution of a text.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  NumericalDistribution - word length distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#wordLengthDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Word length distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <dct:identifier>klms:wordLengthDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the word length distribution of a text.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the word length distribution of a text.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  NumericalDistribution - language distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#languageDistribution">
+        <rdfs:label xml:lang="en">CategoricalDistribution - Language distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#CategoricalDistribution"/>
+        <dct:identifier>klms:languageDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the language distribution of a text.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the language distribution of a text.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  NumericalDistribution - special characters distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#specialCharsDistribution">
+        <rdfs:label xml:lang="en">CategoricalDistribution - Special characters distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Text"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#CategoricalDistribution"/>
+        <dct:identifier>klms:specialCharsDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the special characters distribution of a text.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the special characters distribution of a text.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  Dependency - right  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#right">
+        <rdfs:label xml:lang="en">Dependency - Right</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Dependency"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+        <dct:identifier>klms:right</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate a right dependency.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate a right dependency.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  Dependency - left  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#left">
+        <rdfs:label xml:lang="en">Dependency - Left</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#Dependency"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+        <dct:identifier>klms:left</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate a left dependency.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate a left dependency.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  Dependency - applies to  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#appliesTo">
+        <rdfs:label xml:lang="en">Dependency - Applies to</rdfs:label>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#Attribute"/>
+        <dct:identifier>klms:appliesTo</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate specific characteristics that apply to a dataset's attributes.</vann:usageNote>
+        <rdfs:comment xml:lang="en">TThis property is used to indicate specific characteristics that apply to a dataset's attributes.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  Numerical distribution - value distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#valueDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Value distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#NumericalAttribute"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <dct:identifier>klms:valueDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the value distribution of a numerical attribute.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the value distribution of a numerical attribute.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  Numerical distribution - number of characters distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#numCharsDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Number of characters distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#TextualAttribute"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <dct:identifier>klms:numCharsDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the number of characters distribution of a textual attribute.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the number of characters distribution of a textual attribute.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+<!--  Numerical distribution - number of words distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#numWordsDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Number of words distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#TextualAttribute"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <dct:identifier>klms:numWordsDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the number of words distribution of a textual attribute.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the number of words distribution of a textual attribute.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  Numerical distribution - resolution distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#resolutionDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Resolution distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#TemporalAttribute"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <dct:identifier>klms:resolutionDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the resolution distribution of a temporal attribute.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the resolution distribution of a temporal attribute.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  Numerical distribution - length distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#lengthDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Length distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#SpatialAttribute"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <dct:identifier>klms:lengthDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the geometry length distribution of a spatial attribute.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the geometry length distribution of a spatial attribute.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  Numerical distribution - area distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#areaDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Area distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#SpatialAttribute"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#NumericalDistribution"/>
+        <dct:identifier>klms:areaDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the geometry area distribution of a spatial attribute.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the geometry area distribution of a spatial attribute.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  Categorical distribution - geometry type distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#geomTypeDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Geometry type distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#SpatialAttribute"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#CategoricalDistribution"/>
+        <dct:identifier>klms:geomTypeDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the geometry type distribution of a spatial attribute.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the geometry type distribution of a spatial attribute.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!--  Categorical distribution - frequency distribution  -->
+    <owl:ObjectProperty rdf:about="http://stelar-project.eu/klms#frequencyDistribution">
+        <rdfs:label xml:lang="en">NumericalDistribution - Frequency distribution</rdfs:label>
+        <rdfs:domain rdf:resource="http://stelar-project.eu/klms#CategoricalAttribute"/>
+        <rdfs:range rdf:resource="http://stelar-project.eu/klms#CategoricalDistribution"/>
+        <dct:identifier>klms:frequencyDistribution</dct:identifier>
+        <vann:usageNote xml:lang="en">Optional property. This property is used to indicate the frequency distribution of a categorical attribute.</vann:usageNote>
+        <rdfs:comment xml:lang="en">This property is used to indicate the frequency distribution of a categorical attribute.</rdfs:comment>
+    </owl:ObjectProperty>
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
+</rdf:RDF>
