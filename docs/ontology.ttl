@@ -1,0 +1,1025 @@
+@prefix : <http://stelar-project.eu/klms#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://stelar-project.eu/klms#> .
+
+<http://stelar-project.eu/klms> rdf:type owl:Ontology ;
+                                 owl:imports <https://www.w3.org/ns/dcat> ;
+                                 <http://creativecommons.org/ns#attributionName> "STELAR project"@en ;
+                                 <http://purl.org/dc/terms/abstract> "This model is based on the Data Catalogue vocabulary (DCAT) and is used for describing data profiling results."@en ;
+                                 <http://purl.org/dc/terms/contributor> _:genid1 ,
+                                                                        _:genid3 ,
+                                                                        _:genid5 ;
+                                 <http://purl.org/dc/terms/created> "2023-03-01"^^<xsd:date> ;
+                                 <http://purl.org/dc/terms/creator> _:genid7 ,
+                                                                    _:genid9 ;
+                                 <http://purl.org/dc/terms/license> <https://www.apache.org/licenses/LICENSE-2.0> ;
+                                 <http://purl.org/dc/terms/modified> "2023-05-08"^^<xsd:date> ;
+                                 <http://purl.org/dc/terms/title> "Data Profiling Vocabulary (DPV) model"@en ;
+                                 <http://purl.org/vocab/vann/preferredNamespacePrefix> "klms" ;
+                                 <http://purl.org/vocab/vann/preferredNamespaceUri> : ;
+                                 rdfs:comment "Data Profiling Vocabulary (DPV) model." ;
+                                 rdfs:label "DPV model"@en ;
+                                 owl:versionInfo "0.5"@en .
+
+_:genid1 <http://xmlns.com/foaf/0.1/homepage> <https://www.imsi.athenarc.gr/en/people/member/130> ;
+          <http://schema.org/affiliation> _:genid2 ;
+          rdfs:seeAlso <https://www.imsi.athenarc.gr/en/people/member/130> ;
+          <http://xmlns.com/foaf/0.1/name> "Alexandros Zeakis" .
+
+_:genid3 <http://xmlns.com/foaf/0.1/homepage> <https://www.imsi.athenarc.gr/en/people/member/132> ;
+          <http://schema.org/affiliation> _:genid4 ;
+          rdfs:seeAlso <https://www.imsi.athenarc.gr/en/people/member/132> ;
+          <http://xmlns.com/foaf/0.1/name> "Panos Bethavas" .
+
+_:genid5 <http://xmlns.com/foaf/0.1/homepage> <https://www.imsi.athenarc.gr/en/people/member/76> ;
+          <http://schema.org/affiliation> _:genid6 ;
+          rdfs:seeAlso <https://www.imsi.athenarc.gr/en/people/member/76> ;
+          <http://xmlns.com/foaf/0.1/name> "Kostas Patroumpas" .
+
+_:genid7 <http://xmlns.com/foaf/0.1/homepage> <https://www.linkedin.com/in/georgios-chatzigeorgakidis-58862759/> ;
+          <http://schema.org/affiliation> _:genid8 ;
+          rdfs:seeAlso <https://www.imsi.athenarc.gr/en/people/member/88> ;
+          <http://xmlns.com/foaf/0.1/name> "Georgios Chatzigeorgakidis" .
+
+_:genid9 <http://xmlns.com/foaf/0.1/homepage> <http://web.imis.athena-innovation.gr/~dskoutas/> ;
+          <http://schema.org/affiliation> _:genid10 ;
+          rdfs:seeAlso <http://web.imis.athena-innovation.gr/~dskoutas/> ;
+          <http://xmlns.com/foaf/0.1/name> "Dimitrios Skoutas" .
+
+_:genid2 <http://xmlns.com/foaf/0.1/homepage> <https://www.imsi.athenarc.gr/> ;
+          <http://xmlns.com/foaf/0.1/name> "IMSI, Athena Research Center" .
+
+_:genid4 <http://xmlns.com/foaf/0.1/homepage> <https://www.imsi.athenarc.gr/> ;
+          <http://xmlns.com/foaf/0.1/name> "IMSI, Athena Research Center" .
+
+_:genid6 <http://xmlns.com/foaf/0.1/homepage> <https://www.imsi.athenarc.gr/> ;
+          <http://xmlns.com/foaf/0.1/name> "IMSI, Athena Research Center" .
+
+_:genid8 <http://xmlns.com/foaf/0.1/homepage> <https://www.imsi.athenarc.gr/> ;
+          <http://xmlns.com/foaf/0.1/name> "IMSI, Athena Research Center" .
+
+_:genid10 <http://xmlns.com/foaf/0.1/homepage> <https://www.imsi.athenarc.gr/> ;
+           <http://xmlns.com/foaf/0.1/name> "IMSI, Athena Research Center" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://creativecommons.org/ns#attributionName
+<http://creativecommons.org/ns#attributionName> rdf:type owl:AnnotationProperty .
+
+
+###  http://creativecommons.org/ns#attributionURL
+<http://creativecommons.org/ns#attributionURL> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+<http://purl.org/vocab/vann/preferredNamespaceUri> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/usageNote
+<http://purl.org/vocab/vann/usageNote> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://stelar-project.eu/klms#AccessRightsEnum
+:AccessRightsEnum rdf:type rdfs:Datatype ;
+                  rdfs:comment "Enumeration of access rights for a Dataset."@en ;
+                  owl:equivalentClass [ rdf:type rdfs:Datatype ;
+                                        owl:oneOf [ rdf:type rdf:List ;
+                                                    rdf:first "private" ;
+                                                    rdf:rest [ rdf:type rdf:List ;
+                                                               rdf:first "public" ;
+                                                               rdf:rest [ rdf:type rdf:List ;
+                                                                          rdf:first "restricted" ;
+                                                                          rdf:rest rdf:nil
+                                                                        ]
+                                                             ]
+                                                  ]
+                                      ] .
+
+
+###  xsd:date
+<xsd:date> rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://stelar-project.eu/klms#appliesTo
+:appliesTo rdf:type owl:ObjectProperty ;
+           rdfs:range :Attribute ;
+           <http://purl.org/dc/terms/identifier> "klms:appliesTo" ;
+           <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate specific characteristics that apply to a dataset's attributes."@en ;
+           rdfs:comment "TThis property is used to indicate specific characteristics that apply to a dataset's attributes."@en ;
+           rdfs:label "Dependency - Applies to"@en .
+
+
+###  http://stelar-project.eu/klms#areaDistribution
+:areaDistribution rdf:type owl:ObjectProperty ;
+                  rdfs:domain :SpatialAttribute ;
+                  rdfs:range :NumericalDistribution ;
+                  <http://purl.org/dc/terms/identifier> "klms:areaDistribution" ;
+                  <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the geometry area distribution of a spatial attribute."@en ;
+                  rdfs:comment "This property is used to indicate the geometry area distribution of a spatial attribute."@en ;
+                  rdfs:label "NumericalDistribution - Area distribution"@en .
+
+
+###  http://stelar-project.eu/klms#classDistribution
+:classDistribution rdf:type owl:ObjectProperty ;
+                   rdfs:domain :RDFGraph ;
+                   rdfs:range :CategoricalDistribution ;
+                   <http://purl.org/dc/terms/identifier> "klms:classDistribution" ;
+                   <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the class distribution of an RDF graph."@en ;
+                   rdfs:comment "This property is used to indicate the class distribution of an RDF graph."@en ;
+                   rdfs:label "CategoricalDistribution - Class distribution"@en .
+
+
+###  http://stelar-project.eu/klms#contains
+:contains rdf:type owl:ObjectProperty ;
+          <http://purl.org/dc/terms/identifier> "klms:contains" ;
+          <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate a contains relation among classes."@en ;
+          rdfs:comment "This property is used to indicate a contains relation among classes."@en ;
+          rdfs:label "Contains"@en .
+
+
+###  http://stelar-project.eu/klms#degreeDistribution
+:degreeDistribution rdf:type owl:ObjectProperty ;
+                    rdfs:domain :RDFGraph ;
+                    rdfs:range :NumericalDistribution ;
+                    <http://purl.org/dc/terms/identifier> "klms:degreeDistribution" ;
+                    <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the degree distribution of an RDF graph."@en ;
+                    rdfs:comment "This property is used to indicate the degree distribution of an RDF graph."@en ;
+                    rdfs:label "NumericalDistribution - Degree distribution"@en .
+
+
+###  http://stelar-project.eu/klms#depthDistribution
+:depthDistribution rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Hierarchical ;
+                   rdfs:range :NumericalDistribution ;
+                   <http://purl.org/dc/terms/identifier> "klms:depthDistribution" ;
+                   <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the depth distribution of a hierarchical dataset."@en ;
+                   rdfs:comment "This property is used to indicate the depth distribution of a hierarchical dataset."@en ;
+                   rdfs:label "NumericalDistribution - Depth distribution"@en .
+
+
+###  http://stelar-project.eu/klms#frequencyDistribution
+:frequencyDistribution rdf:type owl:ObjectProperty ;
+                       rdfs:domain :CategoricalAttribute ;
+                       rdfs:range :CategoricalDistribution ;
+                       <http://purl.org/dc/terms/identifier> "klms:frequencyDistribution" ;
+                       <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the frequency distribution of a categorical attribute."@en ;
+                       rdfs:comment "This property is used to indicate the frequency distribution of a categorical attribute."@en ;
+                       rdfs:label "NumericalDistribution - Frequency distribution"@en .
+
+
+###  http://stelar-project.eu/klms#geomTypeDistribution
+:geomTypeDistribution rdf:type owl:ObjectProperty ;
+                      rdfs:domain :SpatialAttribute ;
+                      rdfs:range :CategoricalDistribution ;
+                      <http://purl.org/dc/terms/identifier> "klms:geomTypeDistribution" ;
+                      <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the geometry type distribution of a spatial attribute."@en ;
+                      rdfs:comment "This property is used to indicate the geometry type distribution of a spatial attribute."@en ;
+                      rdfs:label "NumericalDistribution - Geometry type distribution"@en .
+
+
+###  http://stelar-project.eu/klms#languageDistribution
+:languageDistribution rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Text ;
+                      rdfs:range :CategoricalDistribution ;
+                      <http://purl.org/dc/terms/identifier> "klms:languageDistribution" ;
+                      <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the language distribution of a text."@en ;
+                      rdfs:comment "This property is used to indicate the language distribution of a text."@en ;
+                      rdfs:label "CategoricalDistribution - Language distribution"@en .
+
+
+###  http://stelar-project.eu/klms#left
+:left rdf:type owl:ObjectProperty ;
+      rdfs:domain :Dependency ;
+      rdfs:range :Attribute ;
+      <http://purl.org/dc/terms/identifier> "klms:left" ;
+      <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate a left dependency."@en ;
+      rdfs:comment "This property is used to indicate a left dependency."@en ;
+      rdfs:label "Dependency - Left"@en .
+
+
+###  http://stelar-project.eu/klms#lengthDistribution
+:lengthDistribution rdf:type owl:ObjectProperty ;
+                    rdfs:domain :SpatialAttribute ;
+                    rdfs:range :NumericalDistribution ;
+                    <http://purl.org/dc/terms/identifier> "klms:lengthDistribution" ;
+                    <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the geometry length distribution of a spatial attribute."@en ;
+                    rdfs:comment "This property is used to indicate the geometry length distribution of a spatial attribute."@en ;
+                    rdfs:label "NumericalDistribution - Length distribution"@en .
+
+
+###  http://stelar-project.eu/klms#numCharsDistribution
+:numCharsDistribution rdf:type owl:ObjectProperty ;
+                      rdfs:domain :TextualAttribute ;
+                      rdfs:range :NumericalDistribution ;
+                      <http://purl.org/dc/terms/identifier> "klms:numCharsDistribution" ;
+                      <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the number of characters distribution of a textual attribute."@en ;
+                      rdfs:comment "This property is used to indicate the number of characters distribution of a textual attribute."@en ;
+                      rdfs:label "NumericalDistribution - Number of characters distribution"@en .
+
+
+###  http://stelar-project.eu/klms#numWordsDistribution
+:numWordsDistribution rdf:type owl:ObjectProperty ;
+                      rdfs:domain :TextualAttribute ;
+                      rdfs:range :NumericalDistribution ;
+                      <http://purl.org/dc/terms/identifier> "klms:numWordsDistribution" ;
+                      <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the number of words distribution of a textual attribute."@en ;
+                      rdfs:comment "This property is used to indicate the number of words distribution of a textual attribute."@en ;
+                      rdfs:label "NumericalDistribution - Number of words distribution"@en .
+
+
+###  http://stelar-project.eu/klms#profileURL
+:profileURL rdf:type owl:ObjectProperty ;
+            rdfs:domain :Distribution ;
+            rdfs:range <http://stelar-project.eu/www.w3.org/2000/01/rdf-schema#Resource> .
+
+
+###  http://stelar-project.eu/klms#resolutionDistribution
+:resolutionDistribution rdf:type owl:ObjectProperty ;
+                        rdfs:domain :TemporalAttribute ;
+                        rdfs:range :NumericalDistribution ;
+                        <http://purl.org/dc/terms/identifier> "klms:resolutionDistribution" ;
+                        <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the resolution distribution of a temporal attribute."@en ;
+                        rdfs:comment "This property is used to indicate the resolution distribution of a temporal attribute."@en ;
+                        rdfs:label "NumericalDistribution - Resolution distribution"@en .
+
+
+###  http://stelar-project.eu/klms#right
+:right rdf:type owl:ObjectProperty ;
+       rdfs:domain :Dependency ;
+       rdfs:range :Attribute ;
+       <http://purl.org/dc/terms/identifier> "klms:right" ;
+       <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate a right dependency."@en ;
+       rdfs:comment "This property is used to indicate a right dependency."@en ;
+       rdfs:label "Dependency - Right"@en .
+
+
+###  http://stelar-project.eu/klms#sentenceLengthDistribution
+:sentenceLengthDistribution rdf:type owl:ObjectProperty ;
+                            rdfs:domain :Text ;
+                            rdfs:range :NumericalDistribution ;
+                            <http://purl.org/dc/terms/identifier> "klms:sentenceLengthDistribution" ;
+                            <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the sentence length distribution of a text."@en ;
+                            rdfs:comment "This property is used to indicate the sentence length distribution of a text."@en ;
+                            rdfs:label "NumericalDistribution - Sentence length distribution"@en .
+
+
+###  http://stelar-project.eu/klms#specialCharsDistribution
+:specialCharsDistribution rdf:type owl:ObjectProperty ;
+                          rdfs:domain :Text ;
+                          rdfs:range :CategoricalDistribution ;
+                          <http://purl.org/dc/terms/identifier> "klms:specialCharsDistribution" ;
+                          <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the special characters distribution of a text."@en ;
+                          rdfs:comment "This property is used to indicate the special characters distribution of a text."@en ;
+                          rdfs:label "CategoricalDistribution - Special characters distribution"@en .
+
+
+###  http://stelar-project.eu/klms#valueDistribution
+:valueDistribution rdf:type owl:ObjectProperty ;
+                   rdfs:domain :NumericalAttribute ;
+                   rdfs:range :NumericalDistribution ;
+                   <http://purl.org/dc/terms/identifier> "klms:valueDistribution" ;
+                   <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the value distribution of a numerical attribute."@en ;
+                   rdfs:comment "This property is used to indicate the value distribution of a numerical attribute."@en ;
+                   rdfs:label "NumericalDistribution - Value distribution"@en .
+
+
+###  http://stelar-project.eu/klms#wordLengthDistribution
+:wordLengthDistribution rdf:type owl:ObjectProperty ;
+                        rdfs:domain :Text ;
+                        rdfs:range :NumericalDistribution ;
+                        <http://purl.org/dc/terms/identifier> "klms:wordLengthDistribution" ;
+                        <http://purl.org/vocab/vann/usageNote> "Optional property. This property is used to indicate the word length distribution of a text."@en ;
+                        rdfs:comment "This property is used to indicate the word length distribution of a text."@en ;
+                        rdfs:label "NumericalDistribution - Word length distribution"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://stelar-project.eu/klms#absEnergy
+:absEnergy rdf:type owl:DatatypeProperty ;
+           rdfs:domain :SeriesAttribute ;
+           rdfs:range xsd:float ;
+           <http://purl.org/dc/terms/identifier> "klms:absEnergy" ;
+           <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the absolute energy of a series dataset."@en ;
+           rdfs:comment "The absolute energy of a series dataset."@en ;
+           rdfs:label "SeriesAttribute - Absolute energy"@en .
+
+
+###  http://stelar-project.eu/klms#absSumChanges
+:absSumChanges rdf:type owl:DatatypeProperty ;
+               rdfs:domain :SeriesAttribute ;
+               rdfs:range xsd:float ;
+               <http://purl.org/dc/terms/identifier> "klms:absSumChanges" ;
+               <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the absolute value of consecutive changes of a series dataset."@en ;
+               rdfs:comment "The absolute value of consecutive changes of a series dataset."@en ;
+               rdfs:label "SeriesAttribute - Absolute sum of changes"@en .
+
+
+###  http://stelar-project.eu/klms#average
+:average rdf:type owl:DatatypeProperty ;
+         rdfs:domain :NumericalDistribution ;
+         rdfs:range xsd:float ;
+         <http://purl.org/dc/terms/identifier> "klms:average" ;
+         <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe an average value."@en ;
+         rdfs:comment "An average value."@en ;
+         rdfs:label "NumericalDistribution - Average value"@en .
+
+
+###  http://stelar-project.eu/klms#count
+:count rdf:type owl:DatatypeProperty ;
+       rdfs:range xsd:int ;
+       <http://purl.org/dc/terms/identifier> "klms:count" ;
+       <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe a count."@en ;
+       rdfs:comment "A count."@en ;
+       rdfs:label "NumericalDistribution/Category - Count"@en .
+
+
+###  http://stelar-project.eu/klms#crs
+:crs rdf:type owl:DatatypeProperty ;
+     rdfs:range xsd:string ;
+     <http://purl.org/dc/terms/identifier> "klms:crs" ;
+     <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the CRS of a geospatial dataset."@en ;
+     rdfs:comment "The CRS of a geospatial dataset."@en ;
+     rdfs:label "Geospatial - CRS"@en .
+
+
+###  http://stelar-project.eu/klms#degree
+:degree rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:int ;
+        <http://purl.org/dc/terms/identifier> "klms:degree" ;
+        <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the degree of a Correlation/Joinability class instance."@en ;
+        rdfs:comment "The degree of a Correlation/Joinability class instance."@en ;
+        rdfs:label "Correlation/Joinability - Degree"@en .
+
+
+###  http://stelar-project.eu/klms#height
+:height rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Raster ;
+        rdfs:range xsd:int ;
+        <http://purl.org/dc/terms/identifier> "klms:height" ;
+        <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the height of a raster image in pixels."@en ;
+        rdfs:comment "The height of a raster image in pixels."@en ;
+        rdfs:label "Raster - Raster Image Height"@en .
+
+
+###  http://stelar-project.eu/klms#kurtosis
+:kurtosis rdf:type owl:DatatypeProperty ;
+          rdfs:domain :NumericalDistribution ;
+          rdfs:range xsd:float ;
+          <http://purl.org/dc/terms/identifier> "klms:kurtosis" ;
+          <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the kurtosis of a collection of numbers."@en ;
+          rdfs:comment "The kurtosis of a collection of numbers."@en ;
+          rdfs:label "NumericalDistribution - Kurtosis"@en .
+
+
+###  http://stelar-project.eu/klms#language
+:language rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Text ;
+          rdfs:range xsd:int ;
+          <http://purl.org/dc/terms/identifier> "klms:language" ;
+          <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the language of a textual dataset."@en ;
+          rdfs:comment "The language of a textual dataset."@en ;
+          rdfs:label "Text - Main language"@en .
+
+
+###  http://stelar-project.eu/klms#lenAboveMean
+:lenAboveMean rdf:type owl:DatatypeProperty ;
+              rdfs:domain :SeriesAttribute ;
+              rdfs:range xsd:int ;
+              <http://purl.org/dc/terms/identifier> "klms:lenAboveMean" ;
+              <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the length of the longest subsequence above the mean value of a series dataset."@en ;
+              rdfs:comment "The longest subsequence above the mean value."@en ;
+              rdfs:label "SeriesAttribute - Maximum subsequence length above mean"@en .
+
+
+###  http://stelar-project.eu/klms#lenBelowMean
+:lenBelowMean rdf:type owl:DatatypeProperty ;
+              rdfs:domain :SeriesAttribute ;
+              rdfs:range xsd:int ;
+              <http://purl.org/dc/terms/identifier> "klms:lenBelowMean" ;
+              <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the length of the longest subsequence below the mean value of a series dataset."@en ;
+              rdfs:comment "The longest subsequence below the mean value."@en ;
+              rdfs:label "SeriesAttribute - Maximum subsequence length below mean"@en .
+
+
+###  http://stelar-project.eu/klms#max
+:max rdf:type owl:DatatypeProperty ;
+     rdfs:domain :NumericalDistribution ;
+     rdfs:range xsd:float ;
+     <http://purl.org/dc/terms/identifier> "klms:max" ;
+     <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe a maximum value."@en ;
+     rdfs:comment "A maximum value."@en ;
+     rdfs:label "NumericalDistribution - Maximum value"@en .
+
+
+###  http://stelar-project.eu/klms#median
+:median rdf:type owl:DatatypeProperty ;
+        rdfs:domain :NumericalDistribution ;
+        rdfs:range xsd:float ;
+        <http://purl.org/dc/terms/identifier> "klms:median" ;
+        <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe a median value."@en ;
+        rdfs:comment "A median value."@en ;
+        rdfs:label "NumericalDistribution - Median"@en .
+
+
+###  http://stelar-project.eu/klms#min
+:min rdf:type owl:DatatypeProperty ;
+     rdfs:domain :NumericalDistribution ;
+     rdfs:range xsd:float ;
+     <http://purl.org/dc/terms/identifier> "klms:min" ;
+     <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe a minimum value."@en ;
+     rdfs:comment "A minimum value."@en ;
+     rdfs:label "NumericalDistribution - Minimum value"@en .
+
+
+###  http://stelar-project.eu/klms#missingRatio
+:missingRatio rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Attribute ;
+              rdfs:range xsd:float ;
+              <http://purl.org/dc/terms/identifier> "klms:missingRatio" ;
+              <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the missing values ratio of an attribute."@en ;
+              rdfs:comment "The missing values ratio of an attribute."@en ;
+              rdfs:label "Attribute - Missing values ratio"@en .
+
+
+###  http://stelar-project.eu/klms#nestingLevel
+:nestingLevel rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Attribute ;
+              rdfs:range xsd:int ;
+              <http://purl.org/dc/terms/identifier> "klms:nestingLevel" ;
+              <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the nesting of the attribute (in case of nested attributes or property hierarchies)."@en ;
+              rdfs:comment "The nesting of the attribute."@en ;
+              rdfs:label "Attribute - Nesting Level"@en .
+
+
+###  http://stelar-project.eu/klms#numAttributes
+:numAttributes rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Hierarchical ;
+               rdfs:range xsd:int ;
+               <http://purl.org/dc/terms/identifier> "klms:numAttributes" ;
+               <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of attributes of a hierarchical dataset."@en ;
+               rdfs:comment "The number of attributes of a hierarchical dataset."@en ;
+               rdfs:label "Tabular - Number of attributes"@en .
+
+
+###  http://stelar-project.eu/klms#numCharacters
+:numCharacters rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Text ;
+               rdfs:range xsd:int ;
+               <http://purl.org/dc/terms/identifier> "klms:numCharacters" ;
+               <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of characters in a textual dataset."@en ;
+               rdfs:comment "The number of characters in a textual dataset."@en ;
+               rdfs:label "Text - Number of characters"@en .
+
+
+###  http://stelar-project.eu/klms#numClasses
+:numClasses rdf:type owl:DatatypeProperty ;
+            rdfs:domain :RDFGraph ;
+            rdfs:range xsd:int ;
+            <http://purl.org/dc/terms/identifier> "klms:numClasses" ;
+            <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of classes of an RDF graph dataset."@en ;
+            rdfs:comment "The number of classes of an RDF graph dataset."@en ;
+            rdfs:label "RDFGraph - Number of classes"@en .
+
+
+###  http://stelar-project.eu/klms#numColumns
+:numColumns rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Tabular ;
+            rdfs:range xsd:int ;
+            <http://purl.org/dc/terms/identifier> "klms:numColumns" ;
+            <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of columns of a tabular dataset."@en ;
+            rdfs:comment "The number of columns of a tabular dataset."@en ;
+            rdfs:label "Tabular - Number of Columns"@en .
+
+
+###  http://stelar-project.eu/klms#numDatatypeProperties
+:numDatatypeProperties rdf:type owl:DatatypeProperty ;
+                       rdfs:domain :RDFGraph ;
+                       rdfs:range xsd:int ;
+                       <http://purl.org/dc/terms/identifier> "klms:numDatatypeProperties" ;
+                       <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of datatype properties of an RDF graph dataset."@en ;
+                       rdfs:comment "The number of datatype properties of an RDF graph dataset."@en ;
+                       rdfs:label "RDFGraph - Number of datatype properties"@en .
+
+
+###  http://stelar-project.eu/klms#numDistinctWords
+:numDistinctWords rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Text ;
+                  rdfs:range xsd:int ;
+                  <http://purl.org/dc/terms/identifier> "klms:numDistinctWords" ;
+                  <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of distinct words in a textual dataset."@en ;
+                  rdfs:comment "The number of distinct words in a textual dataset."@en ;
+                  rdfs:label "Text - Number of distinct words"@en .
+
+
+###  http://stelar-project.eu/klms#numNamespaces
+:numNamespaces rdf:type owl:DatatypeProperty ;
+               rdfs:domain :RDFGraph ;
+               rdfs:range xsd:int ;
+               <http://purl.org/dc/terms/identifier> "klms:numNamespaces" ;
+               <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of namespaces of an RDF graph dataset."@en ;
+               rdfs:comment "The number of namespaces of an RDF graph dataset."@en ;
+               rdfs:label "RDFGraph - Number of namespaces"@en .
+
+
+###  http://stelar-project.eu/klms#numObjectProperties
+:numObjectProperties rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :RDFGraph ;
+                     rdfs:range xsd:int ;
+                     <http://purl.org/dc/terms/identifier> "klms:numObjectProperties" ;
+                     <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of object properties of an RDF graph dataset."@en ;
+                     rdfs:comment "The number of object properties of an RDF graph dataset."@en ;
+                     rdfs:label "RDFGraph - Number of object properties"@en .
+
+
+###  http://stelar-project.eu/klms#numPeaks
+:numPeaks rdf:type owl:DatatypeProperty ;
+          rdfs:domain :SeriesAttribute ;
+          rdfs:range xsd:int ;
+          <http://purl.org/dc/terms/identifier> "klms:numPeaks" ;
+          <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the total number of peaks of a series dataset."@en ;
+          rdfs:comment "The total number of peaks of a series dataset."@en ;
+          rdfs:label "SeriesAttribute - Number of peaks"@en .
+
+
+###  http://stelar-project.eu/klms#numRecords
+:numRecords rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Hierarchical ;
+            rdfs:range xsd:int ;
+            <http://purl.org/dc/terms/identifier> "klms:numRecords" ;
+            <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of records of a hierarchical dataset."@en ;
+            rdfs:comment "The number of records of a hierarchical dataset."@en ;
+            rdfs:label "Hierarchical - Number of records"@en .
+
+
+###  http://stelar-project.eu/klms#numRows
+:numRows rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Tabular ;
+         rdfs:range xsd:int ;
+         <http://purl.org/dc/terms/identifier> "klms:numRows" ;
+         <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of rows of a tabular dataset."@en ;
+         rdfs:comment "The number of rows of a tabular dataset."@en ;
+         rdfs:label "Tabular - Number of Rows"@en .
+
+
+###  http://stelar-project.eu/klms#numSentences
+:numSentences rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Text ;
+              rdfs:range xsd:int ;
+              <http://purl.org/dc/terms/identifier> "klms:numSentences" ;
+              <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of sentences in a textual dataset."@en ;
+              rdfs:comment "The number of sentences in a textual dataset."@en ;
+              rdfs:label "Text - Number of Sentences"@en .
+
+
+###  http://stelar-project.eu/klms#numWords
+:numWords rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Text ;
+          rdfs:range xsd:int ;
+          <http://purl.org/dc/terms/identifier> "klms:numWords" ;
+          <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of words in a textual dataset."@en ;
+          rdfs:comment "The number of words in a textual dataset."@en ;
+          rdfs:label "Text - Number of words"@en .
+
+
+###  http://stelar-project.eu/klms#percentile10
+:percentile10 rdf:type owl:DatatypeProperty ;
+              rdfs:domain :NumericalDistribution ;
+              rdfs:range xsd:float ;
+              <http://purl.org/dc/terms/identifier> "klms:percentile10" ;
+              <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the 10th percentile of a collection of numbers."@en ;
+              rdfs:comment "The 10th percentile of a collection of numbers."@en ;
+              rdfs:label "NumericalDistribution - Percentile 10"@en .
+
+
+###  http://stelar-project.eu/klms#percentile25
+:percentile25 rdf:type owl:DatatypeProperty ;
+              rdfs:domain :NumericalDistribution ;
+              rdfs:range xsd:float ;
+              <http://purl.org/dc/terms/identifier> "klms:percentile25" ;
+              <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the 25th percentile of a collection of numbers."@en ;
+              rdfs:comment "The 25th percentile of a collection of numbers."@en ;
+              rdfs:label "NumericalDistribution - Percentile 25"@en .
+
+
+###  http://stelar-project.eu/klms#percentile75
+:percentile75 rdf:type owl:DatatypeProperty ;
+              rdfs:domain :NumericalDistribution ;
+              rdfs:range xsd:float ;
+              <http://purl.org/dc/terms/identifier> "klms:percentile75" ;
+              <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the 75th percentile of a collection of numbers."@en ;
+              rdfs:comment "The 75th percentile of a collection of numbers."@en ;
+              rdfs:label "NumericalDistribution - Percentile 75"@en .
+
+
+###  http://stelar-project.eu/klms#percentile90
+:percentile90 rdf:type owl:DatatypeProperty ;
+              rdfs:domain :NumericalDistribution ;
+              rdfs:range xsd:float ;
+              <http://purl.org/dc/terms/identifier> "klms:percentile90" ;
+              <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the 90th percentile of a collection of numbers."@en ;
+              rdfs:comment "The 90th percentile of a collection of numbers."@en ;
+              rdfs:label "NumericalDistribution - Percentile 90"@en .
+
+
+###  http://stelar-project.eu/klms#profileURL
+:profileURL rdf:type owl:DatatypeProperty .
+
+
+###  http://stelar-project.eu/klms#ratioDigits
+:ratioDigits rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Text ,
+                         :TextualAttribute ;
+             rdfs:range xsd:float ;
+             <http://purl.org/dc/terms/identifier> "klms:ratioDigits" ;
+             <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the ratio of digits in a textual dataset."@en ;
+             rdfs:comment "The ratio of digits in a textual dataset."@en ;
+             rdfs:label "Text - Ratio digits"@en .
+
+
+###  http://stelar-project.eu/klms#ratioSpecialChars
+:ratioSpecialChars rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Text ,
+                               :TextualAttribute ;
+                   rdfs:range xsd:float ;
+                   <http://purl.org/dc/terms/identifier> "klms:ratioSpecialChars" ;
+                   <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the ratio of special characters in a textual dataset."@en ;
+                   rdfs:comment "The ratio of special characters in a textual dataset."@en ;
+                   rdfs:label "Text - Ratio special characters"@en .
+
+
+###  http://stelar-project.eu/klms#ratioUppercase
+:ratioUppercase rdf:type owl:DatatypeProperty ;
+                rdfs:domain :Text ,
+                            :TextualAttribute ;
+                rdfs:range xsd:float ;
+                <http://purl.org/dc/terms/identifier> "klms:ratioUppercase" ;
+                <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the ratio of uppercase letters in a textual dataset."@en ;
+                rdfs:comment "The ratio of uppercase letters in a textual dataset."@en ;
+                rdfs:label "Text - Ratio uppercase"@en .
+
+
+###  http://stelar-project.eu/klms#skewness
+:skewness rdf:type owl:DatatypeProperty ;
+          rdfs:domain :NumericalDistribution ;
+          rdfs:range xsd:float ;
+          <http://purl.org/dc/terms/identifier> "klms:skewness" ;
+          <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the skewness of a collection of numbers."@en ;
+          rdfs:comment "The skewness of a collection of numbers."@en ;
+          rdfs:label "NumericalDistribution - Skewness"@en .
+
+
+###  http://stelar-project.eu/klms#stddev
+:stddev rdf:type owl:DatatypeProperty ;
+        rdfs:domain :NumericalDistribution ;
+        rdfs:range xsd:float ;
+        <http://purl.org/dc/terms/identifier> "klms:stddev" ;
+        <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe a standard deviation value."@en ;
+        rdfs:comment "A standard deviation value."@en ;
+        rdfs:label "NumericalDistribution - Standard deviation"@en .
+
+
+###  http://stelar-project.eu/klms#type
+:type rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Attribute ;
+      rdfs:range xsd:string ;
+      <http://purl.org/dc/terms/identifier> "klms:type" ;
+      <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the type of an attribute."@en ;
+      rdfs:comment "The type of an attribute."@en ;
+      rdfs:label "Attribute - Type"@en .
+
+
+###  http://stelar-project.eu/klms#uniqueness
+:uniqueness rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Attribute ;
+            rdfs:range xsd:float ;
+            <http://purl.org/dc/terms/identifier> "klms:uniqueness" ;
+            <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the number of distinct values divided by the number of total values of an attribute."@en ;
+            rdfs:comment "The number of distinct values divided by the number of total values of an attribute."@en ;
+            rdfs:label "Attribute - Uniqueness"@en .
+
+
+###  http://stelar-project.eu/klms#variance
+:variance rdf:type owl:DatatypeProperty ;
+          rdfs:domain :NumericalDistribution ;
+          rdfs:range xsd:float ;
+          <http://purl.org/dc/terms/identifier> "klms:variance" ;
+          <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used describe the variance of a collection of numbers."@en ;
+          rdfs:comment "The variance of a collection of numbers."@en ;
+          rdfs:label "NumericalDistribution - Variance"@en .
+
+
+###  http://stelar-project.eu/klms#width
+:width rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Raster ;
+       rdfs:range xsd:int ;
+       <http://purl.org/dc/terms/identifier> "klms:width" ;
+       <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the width of a raster image in pixels."@en ;
+       rdfs:comment "The width of a raster image in pixels."@en ;
+       rdfs:label "Raster - Raster Image Width"@en .
+
+
+###  http://www.w3.org/ns/dcat#noDataValue
+<http://www.w3.org/ns/dcat#noDataValue> rdf:type owl:DatatypeProperty ;
+                                        rdfs:domain :Raster ;
+                                        rdfs:range xsd:string ;
+                                        <http://purl.org/dc/terms/identifier> "klms:noDataValue" ;
+                                        <http://purl.org/vocab/vann/usageNote> "Optional property. This property describes the no-data value for a raster image."@en ;
+                                        rdfs:comment "The no-data value for a raster image."@en ;
+                                        rdfs:label "Raster - No data value"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://stelar-project.eu/klms#Attribute
+:Attribute rdf:type owl:Class ;
+           <http://purl.org/dc/terms/identifier> "klms:Attribute" ;
+           <http://purl.org/vocab/vann/usageNote> "Optional class. Profiles associated to the languages of various texts of a Dataset published or curated by a single agent."@en ,
+                                                  "Optional class. The profiling information extracted from an Attribute of a dataset."@en ;
+           rdfs:comment "The profiling information extracted from an Attribute of a dataset."@en ;
+           rdfs:label "Attribute"@en .
+
+
+###  http://stelar-project.eu/klms#CategoricalAttribute
+:CategoricalAttribute rdf:type owl:Class ;
+                      rdfs:subClassOf :Attribute ;
+                      <http://purl.org/dc/terms/identifier> "klms:CategoricalAttribute" ;
+                      <http://purl.org/vocab/vann/usageNote> "Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent."@en ,
+                                                             "Optional class. The profiling information extracted from a categorical attribute of a dataset."@en ;
+                      rdfs:comment "The profiling information extracted from a categorical attribute of a dataset."@en ;
+                      rdfs:label "CategoricalAttribute"@en .
+
+
+###  http://stelar-project.eu/klms#CategoricalDistribution
+:CategoricalDistribution rdf:type owl:Class ;
+                         <http://purl.org/dc/terms/identifier> "klms:CategoricalDistribution" ;
+                         <http://purl.org/vocab/vann/usageNote> "Optional class. A class used to describe categorical distribution information."@en ,
+                                                                "Optional class. Profiles of a time series Dataset published or curated by a single agent."@en ;
+                         rdfs:comment "A class used to describe categorical distribution information."@en ;
+                         rdfs:label "CategoricalDistribution"@en .
+
+
+###  http://stelar-project.eu/klms#Category
+:Category rdf:type owl:Class ;
+          rdfs:subClassOf :CategoricalDistribution ;
+          <http://purl.org/dc/terms/identifier> "klms:Category" ;
+          <http://purl.org/vocab/vann/usageNote> "Optional class. A class representing a category of a categorical distribution."@en ,
+                                                 "Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent."@en ;
+          rdfs:comment "A class representing a category of a categorical distribution."@en ;
+          rdfs:label "Category"@en .
+
+
+###  http://stelar-project.eu/klms#Correlation
+:Correlation rdf:type owl:Class ;
+             <http://purl.org/dc/terms/identifier> "klms:Correlation" ;
+             <http://purl.org/vocab/vann/usageNote> "Optional class. A class used to describe correlations among attributes."@en ,
+                                                    "Optional class. Profiles of a multivariate time series from a Dataset published or curated by a single agent."@en ;
+             rdfs:comment "A class used to describe correlations among attributes."@en ;
+             rdfs:label "Correlation"@en .
+
+
+###  http://stelar-project.eu/klms#Dependency
+:Dependency rdf:type owl:Class ;
+            <http://purl.org/dc/terms/identifier> "klms:Dependency" ;
+            <http://purl.org/vocab/vann/usageNote> "Optional class. A class used to describe dependencies among attributes."@en ,
+                                                   "Optional class. Profiles of a set of univariate time series from a Dataset published or curated by a single agent."@en ;
+            rdfs:comment "A class used to describe dependencies among attributes."@en ;
+            rdfs:label "Dependency"@en .
+
+
+###  http://stelar-project.eu/klms#Distribution
+:Distribution rdf:type owl:Class ;
+              rdfs:subClassOf <http://www.w3.org/ns/dcat#Distribution> ;
+              <http://purl.org/dc/terms/identifier> "klms:Distribution" ;
+              <http://purl.org/vocab/vann/usageNote> "Optional class. A DataProfile associated to a Dataset published or curated by a single agent."@en ,
+                                                     "Optional class. The profiling information extracted from a Distribution of a Dataset."@en ;
+              rdfs:comment "The profiling information extracted from a Distribution of a Dataset."@en ;
+              rdfs:label "Distribution"@en .
+
+
+###  http://stelar-project.eu/klms#FunctionalDependency
+:FunctionalDependency rdf:type owl:Class ;
+                      rdfs:subClassOf :Dependency ;
+                      <http://purl.org/dc/terms/identifier> "klms:FunctionalDependency" ;
+                      <http://purl.org/vocab/vann/usageNote> "Optional class. A class used to describe functional dependencies among attributes."@en ,
+                                                             "Optional class. A geospatial-aware profile associated to a raster Dataset published or curated by a single agent."@en ;
+                      rdfs:comment "A class used to describe functional dependencies among attributes."@en ;
+                      rdfs:label "FunctionalDependency"@en .
+
+
+###  http://stelar-project.eu/klms#Hierarchical
+:Hierarchical rdf:type owl:Class ;
+              rdfs:subClassOf :Distribution ;
+              <http://purl.org/dc/terms/identifier> "klms:Hierarchical" ;
+              <http://purl.org/vocab/vann/usageNote> "Optional class. A textual-aware profile associated to a Dataset published or curated by a single agent."@en ,
+                                                     "Optional class. The profiling information extracted from a Distribution of a Hierarchical Dataset."@en ;
+              rdfs:comment "The profiling information extracted from a Distribution of a Hierarchical Dataset."@en ;
+              rdfs:label "Hierarchical"@en .
+
+
+###  http://stelar-project.eu/klms#InclusionDependency
+:InclusionDependency rdf:type owl:Class ;
+                     rdfs:subClassOf :Dependency ;
+                     <http://purl.org/dc/terms/identifier> "klms:InclusionDependency" ;
+                     <http://purl.org/vocab/vann/usageNote> "Optional class. A class used to describe inclusion dependencies among attributes."@en ,
+                                                            "Optional class. Geospatial-aware profiles associated to the various bands of a set of raster images that consist a Dataset published or curated by a single agent."@en ;
+                     rdfs:comment "A class used to describe inclusion dependencies among attributes."@en ;
+                     rdfs:label "InclusionDependency"@en .
+
+
+###  http://stelar-project.eu/klms#Joinability
+:Joinability rdf:type owl:Class ;
+             <http://purl.org/dc/terms/identifier> "klms:Joinability" ;
+             <http://purl.org/vocab/vann/usageNote> "Optional class. A class used to describe the joinability among attributes."@en ,
+                                                    "Optional class. Profiles of a set of multivariate time series from a Dataset published or curated by a single agent."@en ;
+             rdfs:comment "A class used to describe the joinability among attributes."@en ;
+             rdfs:label "Joinability"@en .
+
+
+###  http://stelar-project.eu/klms#NumericalAttribute
+:NumericalAttribute rdf:type owl:Class ;
+                    rdfs:subClassOf :Attribute ;
+                    <http://purl.org/dc/terms/identifier> "klms:NumericalAttribute" ;
+                    <http://purl.org/vocab/vann/usageNote> "Optional class. Geospatial-aware profiles associated to the various raster images that consist a Dataset published or curated by a single agent."@en ,
+                                                           "Optional class. The profiling information extracted from a numerical attribute of a dataset."@en ;
+                    rdfs:comment "The profiling information extracted from a numerical attribute of a dataset."@en ;
+                    rdfs:label "NumericalAttribute"@en .
+
+
+###  http://stelar-project.eu/klms#NumericalDistribution
+:NumericalDistribution rdf:type owl:Class ;
+                       <http://purl.org/dc/terms/identifier> "klms:NumericalDistribution" ;
+                       <http://purl.org/vocab/vann/usageNote> "Optional class. A class used to describe numerical distribution information."@en ,
+                                                              "Optional class. Profiles associated to the distinct terms of various texts of a Dataset published or curated by a single agent."@en ;
+                       rdfs:comment "A class used to describe numerical distribution information."@en ;
+                       rdfs:label "NumericalDistribution"@en .
+
+
+###  http://stelar-project.eu/klms#RDFGraph
+:RDFGraph rdf:type owl:Class ;
+          rdfs:subClassOf :Distribution ;
+          <http://purl.org/dc/terms/identifier> "klms:RDFGraph" ;
+          <http://purl.org/vocab/vann/usageNote> "Optional class. Combined profile associated to the various texts of a Dataset published or curated by a single agent."@en ,
+                                                 "Optional class. The profiling information extracted from a Distribution of a RDFGraph Dataset."@en ;
+          rdfs:comment "The profiling information extracted from a Distribution of a RDFGraph Dataset."@en ;
+          rdfs:label "RDFGraph"@en .
+
+
+###  http://stelar-project.eu/klms#Raster
+:Raster rdf:type owl:Class ;
+        rdfs:subClassOf :Distribution ;
+        <http://purl.org/dc/terms/identifier> "klms:Raster" ;
+        <http://purl.org/vocab/vann/usageNote> "Optional class. A DataProfile associated to a Dataset published or curated by a single agent."@en ,
+                                               "Optional class. The profiling information extracted from a Distribution of a Raster Dataset."@en ;
+        rdfs:comment "The profiling information extracted from a Distribution of Raster Dataset."@en ;
+        rdfs:label "Raster"@en .
+
+
+###  http://stelar-project.eu/klms#SeriesAttribute
+:SeriesAttribute rdf:type owl:Class ;
+                 rdfs:subClassOf :NumericalAttribute ;
+                 <http://purl.org/dc/terms/identifier> "klms:SeriesAttribute" ;
+                 <http://purl.org/vocab/vann/usageNote> "Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent."@en ,
+                                                        "Optional class. The profiling information extracted from a series attribute of a dataset."@en ;
+                 rdfs:comment "The profiling information extracted from a series attribute of a dataset."@en ;
+                 rdfs:label "SeriesAttribute"@en .
+
+
+###  http://stelar-project.eu/klms#SpatialAttribute
+:SpatialAttribute rdf:type owl:Class ;
+                  rdfs:subClassOf :Attribute ;
+                  <http://purl.org/dc/terms/identifier> "klms:SpatialAttribute" ;
+                  <http://purl.org/vocab/vann/usageNote> "Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent."@en ,
+                                                         "Optional class. The profiling information extracted from a spatial attribute of a dataset."@en ;
+                  rdfs:comment "The profiling information extracted from a spatial attribute of a dataset."@en ;
+                  rdfs:label "SpatialAttribute"@en .
+
+
+###  http://stelar-project.eu/klms#Tabular
+:Tabular rdf:type owl:Class ;
+         rdfs:subClassOf :Distribution ;
+         <http://purl.org/dc/terms/identifier> "klms:Tabular" ;
+         <http://purl.org/vocab/vann/usageNote> "Optional class. A geospatial-aware profile associated to a Dataset published or curated by a single agent."@en ,
+                                                "Optional class. The profiling information extracted from a Distribution of a Tabular Dataset."@en ;
+         rdfs:comment "The profiling information extracted from a Distribution of a Tabular Dataset."@en ;
+         rdfs:label "Tabular"@en .
+
+
+###  http://stelar-project.eu/klms#TemporalAttribute
+:TemporalAttribute rdf:type owl:Class ;
+                   rdfs:subClassOf :Attribute ;
+                   <http://purl.org/dc/terms/identifier> "klms:TemporalAttribute" ;
+                   <http://purl.org/vocab/vann/usageNote> "Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent."@en ,
+                                                          "Optional class. The profiling information extracted from a temporal attribute of a dataset."@en ;
+                   rdfs:comment "The profiling information extracted from a temporal attribute of a dataset."@en ;
+                   rdfs:label "TemporalAttribute"@en .
+
+
+###  http://stelar-project.eu/klms#Text
+:Text rdf:type owl:Class ;
+      rdfs:subClassOf :Distribution ;
+      <http://purl.org/dc/terms/identifier> "klms:Text" ;
+      <http://purl.org/vocab/vann/usageNote> "Optional class. Profiles associated to the various texts of a Dataset published or curated by a single agent."@en ,
+                                             "Optional class. The profiling information extracted from a Distribution of a Text Dataset."@en ;
+      rdfs:comment "The profiling information extracted from a Distribution of a Text Dataset."@en ;
+      rdfs:label "Text"@en .
+
+
+###  http://stelar-project.eu/klms#TextualAttribute
+:TextualAttribute rdf:type owl:Class ;
+                  rdfs:subClassOf :Attribute ;
+                  <http://purl.org/dc/terms/identifier> "klms:TextualAttribute" ;
+                  <http://purl.org/vocab/vann/usageNote> "Optional class. Geospatial-aware profiles associated to the band of a raster image from a Dataset published or curated by a single agent."@en ,
+                                                         "Optional class. The profiling information extracted from a textual attribute of a dataset."@en ;
+                  rdfs:comment "The profiling information extracted from a textual attribute of a dataset."@en ;
+                  rdfs:label "TextualAttribute"@en .
+
+
+###  http://stelar-project.eu/klms#UniqueCombination
+:UniqueCombination rdf:type owl:Class ;
+                   <http://purl.org/dc/terms/identifier> "klms:UniqueCombination" ;
+                   <http://purl.org/vocab/vann/usageNote> "Optional class. A class used to indicate sets of attributes that can be used as composite keys."@en ,
+                                                          "Optional class. A geospatial-aware profile associated to a vector Dataset published or curated by a single agent."@en ;
+                   rdfs:comment "A class used to indicate sets of attributes that can be used as composite keys."@en ;
+                   rdfs:label "UniqueCombination"@en .
+
+
+###  http://stelar-project.eu/www.w3.org/2000/01/rdf-schema#Resource
+<http://stelar-project.eu/www.w3.org/2000/01/rdf-schema#Resource> rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/dcat#Distribution
+<http://www.w3.org/ns/dcat#Distribution> rdf:type owl:Class ;
+                                         <http://purl.org/dc/terms/identifier> "dcat:Distribution" ;
+                                         <http://purl.org/vocab/vann/usageNote> "Recommended class. A physical embodiment of the Dataset in a particular format."@en ;
+                                         rdfs:comment "Represents a specific available form of a dataset. Each dataset might be available in different forms, these forms might represent different formats of the dataset, different endpoints,... Examples of Distribution include a downloadable CSV file, an XLS file representing the dataset, an RSS feed…"@en ;
+                                         rdfs:isDefinedBy <https://www.w3.org/TR/vocab-dcat-2/#Class:Distribution> ;
+                                         rdfs:label "Distribution"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://web.imis.athena-innovation.gr/~dskoutas/
+<http://web.imis.athena-innovation.gr/~dskoutas/> rdf:type owl:NamedIndividual .
+
+
+###  https://www.imsi.athenarc.gr/
+<https://www.imsi.athenarc.gr/> rdf:type owl:NamedIndividual .
+
+
+###  https://www.imsi.athenarc.gr/en/people/member/130
+<https://www.imsi.athenarc.gr/en/people/member/130> rdf:type owl:NamedIndividual .
+
+
+###  https://www.imsi.athenarc.gr/en/people/member/132
+<https://www.imsi.athenarc.gr/en/people/member/132> rdf:type owl:NamedIndividual .
+
+
+###  https://www.imsi.athenarc.gr/en/people/member/76
+<https://www.imsi.athenarc.gr/en/people/member/76> rdf:type owl:NamedIndividual .
+
+
+###  https://www.linkedin.com/in/georgios-chatzigeorgakidis-58862759/
+<https://www.linkedin.com/in/georgios-chatzigeorgakidis-58862759/> rdf:type owl:NamedIndividual .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:profileURL <http://purl.org/dc/terms/identifier> "klms:profileURL" ;
+            <http://purl.org/vocab/vann/usageNote> "Optional property. This property can be used to store a link to a file or web application that contains all the profiling results."@en ;
+            rdfs:comment "This property can be used to store a link to a file or web application that contains all the profiling results."@en ;
+            rdfs:label "Distribution - Profile URL"@en .
+
+
+<https://www.apache.org/licenses/LICENSE-2.0> <http://creativecommons.org/ns#attributionName> "STELAR project" ;
+                                              <http://creativecommons.org/ns#attributionURL> <https://stelar-project.eu/> ;
+                                              <http://purl.org/dc/terms/title> "Apache License 2.0" .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

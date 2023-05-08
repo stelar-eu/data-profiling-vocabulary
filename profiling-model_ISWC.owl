@@ -41,13 +41,17 @@
 	 xmlns:odrl="http://www.w3.org/ns/odrl/2/"
 	 xmlns:dc="http://purl.org/dc/elements/1.1/">
     <owl:Ontology rdf:about="http://stelar-project.eu/klms">
-        <owl:imports rdf:resource="http://www.w3.org/ns/dcat"/>
-		<owl:imports rdf:resource="http://www.opengis.net/ont/geosparql"/>
+       <owl:imports rdf:resource="https://www.w3.org/ns/dcat"/>
+		<rdfs:label xml:lang="en">DPV model</rdfs:label>
+		<dct:title xml:lang="en">Data Profiling Vocabulary (DPV) model</dct:title>
         <rdfs:comment>Data Profiling Vocabulary (DPV) model.</rdfs:comment>
-		<dct:modified rdf:datatype="xsd:date">2023-05-03</dct:modified>
+		<dct:created rdf:datatype="xsd:date">2023-03-01</dct:created>
+		<dct:modified rdf:datatype="xsd:date">2023-05-08</dct:modified>
         <dct:abstract xml:lang="en">This model is based on the Data Catalogue vocabulary (DCAT) and is used for describing data profiling results.</dct:abstract>
         <cc:attributionName xml:lang="en">STELAR project</cc:attributionName>
-        <owl:versionInfo xml:lang="en">0.0.5</owl:versionInfo>
+		<vann:preferredNamespacePrefix>klms</vann:preferredNamespacePrefix>
+		<vann:preferredNamespaceUri rdf:resource="http://stelar-project.eu/klms#"/>
+        <owl:versionInfo xml:lang="en">0.5</owl:versionInfo>
 		<dct:license>
           <rdf:Description rdf:about="https://www.apache.org/licenses/LICENSE-2.0">
             <dct:title>Apache License 2.0</dct:title>
@@ -55,6 +59,51 @@
             <cc:attributionURL rdf:resource="https://stelar-project.eu/"/>
           </rdf:Description>
         </dct:license>
+		<dct:creator rdf:parseType="Resource">
+          <rdfs:seeAlso rdf:resource="http://web.imis.athena-innovation.gr/~dskoutas/"/>
+          <foaf:name>Dimitrios Skoutas</foaf:name>
+          <foaf:homepage rdf:resource="http://web.imis.athena-innovation.gr/~dskoutas/"/>
+          <schema:affiliation rdf:parseType="Resource">
+            <foaf:name>IMSI, Athena Research Center</foaf:name>
+            <foaf:homepage rdf:resource="https://www.imsi.athenarc.gr/"/>
+          </schema:affiliation>	           
+        </dct:creator>
+		<dct:creator rdf:parseType="Resource">
+          <rdfs:seeAlso rdf:resource="https://www.imsi.athenarc.gr/en/people/member/88"/>
+          <foaf:name>Georgios Chatzigeorgakidis</foaf:name>
+          <foaf:homepage rdf:resource="https://www.linkedin.com/in/georgios-chatzigeorgakidis-58862759/"/>
+          <schema:affiliation rdf:parseType="Resource">
+            <foaf:name>IMSI, Athena Research Center</foaf:name>
+            <foaf:homepage rdf:resource="https://www.imsi.athenarc.gr/"/>
+          </schema:affiliation>	           
+        </dct:creator>
+		<dct:contributor rdf:parseType="Resource">
+          <rdfs:seeAlso rdf:resource="https://www.imsi.athenarc.gr/en/people/member/76"/>
+          <foaf:name>Kostas Patroumpas</foaf:name>
+          <foaf:homepage rdf:resource="https://www.imsi.athenarc.gr/en/people/member/76"/>
+          <schema:affiliation rdf:parseType="Resource">
+            <foaf:name>IMSI, Athena Research Center</foaf:name>
+            <foaf:homepage rdf:resource="https://www.imsi.athenarc.gr/"/>
+          </schema:affiliation>	           
+        </dct:contributor>
+		<dct:contributor rdf:parseType="Resource">
+		 <rdfs:seeAlso rdf:resource="https://www.imsi.athenarc.gr/en/people/member/130"/>
+          <foaf:name>Alexandros Zeakis</foaf:name>
+          <foaf:homepage rdf:resource="https://www.imsi.athenarc.gr/en/people/member/130"/>     
+          <schema:affiliation rdf:parseType="Resource">
+            <foaf:name>IMSI, Athena Research Center</foaf:name>
+            <foaf:homepage rdf:resource="https://www.imsi.athenarc.gr/"/>
+          </schema:affiliation>	  		  
+        </dct:contributor>
+		<dct:contributor rdf:parseType="Resource">
+		 <rdfs:seeAlso rdf:resource="https://www.imsi.athenarc.gr/en/people/member/132"/>
+          <foaf:name>Panos Bethavas</foaf:name>
+          <foaf:homepage rdf:resource="https://www.imsi.athenarc.gr/en/people/member/132"/>     
+          <schema:affiliation rdf:parseType="Resource">
+            <foaf:name>IMSI, Athena Research Center</foaf:name>
+            <foaf:homepage rdf:resource="https://www.imsi.athenarc.gr/"/>
+          </schema:affiliation>	  		  
+        </dct:contributor>
     </owl:Ontology>
     
 <!-- CHECK RDF DCAT to CKAN dataset mapping: https://extensions.ckan.org/extension/dcat/ -->
@@ -827,7 +876,7 @@
         <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#NumericalAttribute"/>
     </owl:Class>
 
-<!-- klms:BandAttribute   -->
+<!-- klms:BandAttribute 
     <owl:Class rdf:about="http://stelar-project.eu/klms#BandAttribute">
         <vann:usageNote xml:lang="en">Optional class. Geospatial-aware profiles associated to an applied mask on a raster image from a Dataset published or curated by a single agent.</vann:usageNote>
         <dct:identifier>klms:BandAttribute</dct:identifier>
@@ -836,6 +885,7 @@
         <vann:usageNote xml:lang="en">Optional class. The profiling information extracted from a band attribute of a dataset.</vann:usageNote>
         <rdfs:subClassOf rdf:resource="http://stelar-project.eu/klms#NumericalAttribute"/>
     </owl:Class>
+-->
 
 <!-- klms:Category   -->
     <owl:Class rdf:about="http://stelar-project.eu/klms#Category">
