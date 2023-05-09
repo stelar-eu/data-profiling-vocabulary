@@ -85,22 +85,6 @@ _:genid9 <http://xmlns.com/foaf/0.1/homepage> <http://web.imis.athena-innovation
 # #################################################################
 # 
 # 
-# http://stelar-project.eu/klms#AccessRightsEnum
-<http://stelar-project.eu/klms#AccessRightsEnum> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Datatype> .
-<http://stelar-project.eu/klms#AccessRightsEnum> <http://www.w3.org/2000/01/rdf-schema#comment> "Enumeration of access rights for a Dataset."@en .
-<http://stelar-project.eu/klms#AccessRightsEnum> <http://www.w3.org/2002/07/owl#equivalentClass> _:genid11 .
-_:genid11 <http://www.w3.org/2002/07/owl#oneOf> _:genid14 .
-_:genid14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid13 .
-_:genid13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> _:genid12 .
-_:genid12 <http://www.w3.org/1999/02/22-rdf-syntax-ns#rest> <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
-_:genid12 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "restricted" .
-_:genid12 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "public" .
-_:genid13 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "private" .
-_:genid14 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#List> .
-_:genid11 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Datatype> .
-# 
 # xsd:date
 <xsd:date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Datatype> .
 # 

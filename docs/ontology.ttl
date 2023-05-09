@@ -93,23 +93,6 @@ _:genid10 <http://xmlns.com/foaf/0.1/homepage> <https://www.imsi.athenarc.gr/> ;
 #    Datatypes
 #################################################################
 
-###  http://stelar-project.eu/klms#AccessRightsEnum
-:AccessRightsEnum rdf:type rdfs:Datatype ;
-                  rdfs:comment "Enumeration of access rights for a Dataset."@en ;
-                  owl:equivalentClass [ rdf:type rdfs:Datatype ;
-                                        owl:oneOf [ rdf:type rdf:List ;
-                                                    rdf:first "private" ;
-                                                    rdf:rest [ rdf:type rdf:List ;
-                                                               rdf:first "public" ;
-                                                               rdf:rest [ rdf:type rdf:List ;
-                                                                          rdf:first "restricted" ;
-                                                                          rdf:rest rdf:nil
-                                                                        ]
-                                                             ]
-                                                  ]
-                                      ] .
-
-
 ###  xsd:date
 <xsd:date> rdf:type rdfs:Datatype .
 
