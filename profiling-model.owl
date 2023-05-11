@@ -106,8 +106,6 @@
         </dct:creator>
     </owl:Ontology>
     
-<!-- CHECK RDF DCAT to CKAN dataset mapping: https://extensions.ckan.org/extension/dcat/ -->
-
 
 <!-- ####################################### -->
 <!-- ##===================================## -->
